@@ -1,0 +1,295 @@
+{
+	"tempHash": "00D347CBA29EE6BA",
+	"tbluHash": "000A263E54999100",
+	"patch": [
+		{
+			"AddEntity": [
+				"feede96f6601e4a6",
+				{
+					"parent": "158cb860b1fce56d",
+					"name": "Advertisements",
+					"factory": "[modules:/zentity.class].pc_entitytype",
+					"blueprint": "[modules:/zentity.class].pc_entityblueprint"
+				}
+			]
+		},
+		{
+			"AddEntity": [
+				"feeda35720bf1ae4",
+				{
+					"parent": "feed2e478e7d6e53",
+					"name": "PIP",
+					"factory": "00AB0720E003F1E8",
+					"blueprint": "004FB5D381AC47D8",
+					"properties": {
+						"m_mTransform": {
+							"type": "SMatrix43",
+							"value": { "rotation": { "x": -90, "y": 0, "z": 0 }, "position": { "x": 0, "y": -2, "z": 1.62 } }
+						},
+						"m_eidParent": { "type": "SEntityTemplateReference", "value": "158cb860b1fce56d", "postInit": true },
+						"m_sHUDMessageDebug": {
+							"type": "ZString",
+							"value": "This mod is sponsored by Honey, a free browser extension with far-reaching privileges and intrusive data collection that occasionally saves you money on purchases"
+						}
+					}
+				}
+			]
+		},
+		{
+			"AddEntity": [
+				"feedc55986109134",
+				{
+					"parent": "feede96f6601e4a6",
+					"name": "Timer",
+					"factory": "[modules:/zrandomtimerentity.class].pc_entitytype",
+					"blueprint": "[modules:/zrandomtimerentity.class].pc_entityblueprint",
+					"properties": {
+						"m_fMinTime": { "type": "float32", "value": 240 },
+						"m_fMaxTime": { "type": "float32", "value": 720 }
+					},
+					"events": { "TimeOut": { "Pick": ["feed23f59eaedb07"] } }
+				}
+			]
+		},
+		{
+			"AddEntity": [
+				"feed23f59eaedb07",
+				{
+					"parent": "feede96f6601e4a6",
+					"name": "Random",
+					"factory": "[modules:/zrandomselector.class].pc_entitytype",
+					"blueprint": "[modules:/zrandomselector.class].pc_entityblueprint",
+					"properties": {
+						"m_Choices": {
+							"type": "TArray<SEntityTemplateReference>",
+							"value": ["feed2e478e7d6e53", "feed2009461650ff"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"AddEntity": [
+				"feed2e478e7d6e53",
+				{
+					"parent": "feed23f59eaedb07",
+					"name": "Honey",
+					"factory": "[modules:/zrandomselectorchoice.class].pc_entitytype",
+					"blueprint": "[modules:/zrandomselectorchoice.class].pc_entityblueprint",
+					"events": {
+						"OnPicked": {
+							"SetPIPPriority": [{ "ref": "feeda35720bf1ae4", "value": { "type": "int32", "value": 9999 } }],
+							"Start": ["feedb884ccd05974"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"AddEntity": [
+				"feedb884ccd05974",
+				{
+					"parent": "feed2e478e7d6e53",
+					"name": "Timer",
+					"factory": "[modules:/ztimerentity.class].pc_entitytype",
+					"blueprint": "[modules:/ztimerentity.class].pc_entityblueprint",
+					"properties": {
+						"m_bEnabled": { "type": "bool", "value": false },
+						"m_nInterval": { "type": "int32", "value": 12000 }
+					},
+					"events": {
+						"TimeOut": {
+							"Stop": ["feedb884ccd05974"],
+							"Reset": ["feedb884ccd05974"],
+							"SetPIPPriority": [{ "ref": "feeda35720bf1ae4", "value": { "type": "int32", "value": 0 } }]
+						}
+					}
+				}
+			]
+		},
+		{
+			"AddEntity": [
+				"feed2009461650ff",
+				{
+					"parent": "feed23f59eaedb07",
+					"name": "Nord",
+					"factory": "[modules:/zrandomselectorchoice.class].pc_entitytype",
+					"blueprint": "[modules:/zrandomselectorchoice.class].pc_entityblueprint",
+					"events": {
+						"OnPicked": {
+							"SetPIPPriority": [{ "ref": "feed9e1f0ddd018a", "value": { "type": "int32", "value": 9999 } }],
+							"Start": ["feed3296fa948392"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"AddEntity": [
+				"feed9e1f0ddd018a",
+				{
+					"parent": "feed2009461650ff",
+					"name": "PIP",
+					"factory": "00AB0720E003F1E8",
+					"blueprint": "004FB5D381AC47D8",
+					"properties": {
+						"m_mTransform": {
+							"type": "SMatrix43",
+							"value": { "rotation": { "x": -90, "y": 0, "z": 0 }, "position": { "x": 0, "y": -2, "z": 1.62 } }
+						},
+						"m_eidParent": { "type": "SEntityTemplateReference", "value": "158cb860b1fce56d", "postInit": true },
+						"m_sHUDMessageDebug": {
+							"type": "ZString",
+							"value": "You could be exploited by hackers online! NordVPN doesn't help at all with that but that sure won't stop us from advertising that it will. Sign up now and get consumer-grade encryption at an unreasonable price!"
+						}
+					}
+				}
+			]
+		},
+		{
+			"AddEntity": [
+				"feed3296fa948392",
+				{
+					"parent": "feed2009461650ff",
+					"name": "Timer",
+					"factory": "[modules:/ztimerentity.class].pc_entitytype",
+					"blueprint": "[modules:/ztimerentity.class].pc_entityblueprint",
+					"properties": {
+						"m_bEnabled": { "type": "bool", "value": false },
+						"m_nInterval": { "type": "int32", "value": 12000 }
+					},
+					"events": {
+						"TimeOut": {
+							"Stop": ["feed3296fa948392"],
+							"Reset": ["feed3296fa948392"],
+							"SetPIPPriority": [{ "ref": "feed9e1f0ddd018a", "value": { "type": "int32", "value": 0 } }]
+						}
+					}
+				}
+			]
+		},
+		{
+			"AddEntity": [
+				"feedb9ce0c25bf8a",
+				{
+					"parent": "feed23f59eaedb07",
+					"name": "Raycon",
+					"factory": "[modules:/zrandomselectorchoice.class].pc_entitytype",
+					"blueprint": "[modules:/zrandomselectorchoice.class].pc_entityblueprint",
+					"events": {
+						"OnPicked": {
+							"SetPIPPriority": [{ "ref": "feed30c3bb1cc6ab", "value": { "type": "int32", "value": 9999 } }],
+							"Start": ["feed98e18c8f6ac1"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"AddEntity": [
+				"feed30c3bb1cc6ab",
+				{
+					"parent": "feedb9ce0c25bf8a",
+					"name": "PIP",
+					"factory": "00AB0720E003F1E8",
+					"blueprint": "004FB5D381AC47D8",
+					"properties": {
+						"m_mTransform": {
+							"type": "SMatrix43",
+							"value": { "rotation": { "x": -90, "y": 0, "z": 0 }, "position": { "x": 0, "y": -2, "z": 1.62 } }
+						},
+						"m_eidParent": { "type": "SEntityTemplateReference", "value": "158cb860b1fce56d", "postInit": true },
+						"m_sHUDMessageDebug": {
+							"type": "ZString",
+							"value": "You should immediately buy Raycon earbuds. They're somewhat affordable, low-quality and while I've never used them I'm not going to tell you that!"
+						}
+					}
+				}
+			]
+		},
+		{
+			"AddEntity": [
+				"feed98e18c8f6ac1",
+				{
+					"parent": "feedb9ce0c25bf8a",
+					"name": "Timer",
+					"factory": "[modules:/ztimerentity.class].pc_entitytype",
+					"blueprint": "[modules:/ztimerentity.class].pc_entityblueprint",
+					"properties": {
+						"m_bEnabled": { "type": "bool", "value": false },
+						"m_nInterval": { "type": "int32", "value": 12000 }
+					},
+					"events": {
+						"TimeOut": {
+							"Stop": ["feed98e18c8f6ac1"],
+							"Reset": ["feed98e18c8f6ac1"],
+							"SetPIPPriority": [{ "ref": "feed30c3bb1cc6ab", "value": { "type": "int32", "value": 0 } }]
+						}
+					}
+				}
+			]
+		},
+		{
+			"AddEntity": [
+				"feed682ad869c80c",
+				{
+					"parent": "feed23f59eaedb07",
+					"name": "GFuel",
+					"factory": "[modules:/zrandomselectorchoice.class].pc_entitytype",
+					"blueprint": "[modules:/zrandomselectorchoice.class].pc_entityblueprint",
+					"events": {
+						"OnPicked": {
+							"SetPIPPriority": [{ "ref": "feed88a371df68fd", "value": { "type": "int32", "value": 9999 } }],
+							"Start": ["feed5320a2274cd0"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"AddEntity": [
+				"feed88a371df68fd",
+				{
+					"parent": "feed682ad869c80c",
+					"name": "PIP",
+					"factory": "00AB0720E003F1E8",
+					"blueprint": "004FB5D381AC47D8",
+					"properties": {
+						"m_mTransform": {
+							"type": "SMatrix43",
+							"value": { "rotation": { "x": -90, "y": 0, "z": 0 }, "position": { "x": 0, "y": -2, "z": 1.62 } }
+						},
+						"m_eidParent": { "type": "SEntityTemplateReference", "value": "158cb860b1fce56d", "postInit": true },
+						"m_sHUDMessageDebug": {
+							"type": "ZString",
+							"value": "G Fuel has 50% more caffeine than a cup of coffee per serving, previous accidental lead contamination worth $118,500 and a toxic work environment - buy it today!"
+						}
+					}
+				}
+			]
+		},
+		{
+			"AddEntity": [
+				"feed5320a2274cd0",
+				{
+					"parent": "feed682ad869c80c",
+					"name": "Timer",
+					"factory": "[modules:/ztimerentity.class].pc_entitytype",
+					"blueprint": "[modules:/ztimerentity.class].pc_entityblueprint",
+					"properties": {
+						"m_bEnabled": { "type": "bool", "value": false },
+						"m_nInterval": { "type": "int32", "value": 12000 }
+					},
+					"events": {
+						"TimeOut": {
+							"Stop": ["feed5320a2274cd0"],
+							"Reset": ["feed5320a2274cd0"],
+							"SetPIPPriority": [{ "ref": "feed88a371df68fd", "value": { "type": "int32", "value": 0 } }]
+						}
+					}
+				}
+			]
+		}
+	],
+	"patchVersion": 6
+}

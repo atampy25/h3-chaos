@@ -1,9 +1,10 @@
 {
 	"$schema": "https://raw.githubusercontent.com/atampy25/simple-mod-framework/main/Mod%20Manager/src/lib/manifest-schema.json",
 	"version": "0.1.0",
-	"id": "YourPreferredAlias.AnIDForTheMod",
-	"name": "Test Mod",
-	"description": "A truly amazing mod",
-	"authors": ["Your Preferred Alias"],
-	"frameworkVersion": "2.25.1"
+	"id": "Atampy26.Chaos",
+	"name": "Chaos",
+	"description": "Like Hitman, but the writing team is on illegally-obtained prescription stimulants.",
+	"authors": ["Atampy26"],
+	"contentFolders": ["content"],
+	"frameworkVersion": "2.30.4"
 }

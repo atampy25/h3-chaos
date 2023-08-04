@@ -1,0 +1,108 @@
+{
+	"tempHash": "00B44A7993B2695E",
+	"tbluHash": "00DE2ABB239AEA06",
+	"patch": [
+		{
+			"SubEntityOperation": [
+				"342d3f1994b78c4e",
+				{ "SetPropertyValue": { "property_name": "m_eGesture", "value": "EGC_StopWarn" } }
+			]
+		},
+		{
+			"SubEntityOperation": [
+				"342d3f1994b78c4e",
+				{ "SetPropertyValue": { "property_name": "m_bForceSubtitles", "value": true } }
+			]
+		},
+		{ "SubEntityOperation": ["a92539f14c3cbbdb", { "RemoveAllInputCopyConnectionsForTrigger": ["Start", "Start"] }] },
+		{ "SubEntityOperation": ["a92539f14c3cbbdb", { "AddInputCopyConnection": ["Start", "Pick", "feed54457b32f26d"] }] },
+		{ "SubEntityOperation": ["a92539f14c3cbbdb", { "RemovePropertyAlias": "m_bForceSubtitles" }] },
+		{
+			"SubEntityOperation": [
+				"a92539f14c3cbbdb",
+				{
+					"AddPropertyAliasConnection": [
+						"m_rCharacter",
+						{ "originalProperty": "m_rActor", "originalEntity": "feedd6bf701198b3" }
+					]
+				}
+			]
+		},
+		{
+			"SubEntityOperation": [
+				"a92539f14c3cbbdb",
+				{
+					"AddPropertyAliasConnection": [
+						"m_rCharacter",
+						{ "originalProperty": "m_rSpeakingActor", "originalEntity": "feedd6bf701198b3" }
+					]
+				}
+			]
+		},
+		{
+			"AddEntity": [
+				"feed54457b32f26d",
+				{
+					"parent": "a92539f14c3cbbdb",
+					"name": "Oops, fluent aphasia",
+					"factory": "[modules:/zrandomselector.class].pc_entitytype",
+					"blueprint": "[modules:/zrandomselector.class].pc_entityblueprint",
+					"properties": {
+						"m_Choices": {
+							"type": "TArray<SEntityTemplateReference>",
+							"value": ["feed92a91ae152da", "feedd6bf701198b3"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"AddEntity": [
+				"feed92a91ae152da",
+				{
+					"parent": "feed54457b32f26d",
+					"name": "Good news, no brain damage",
+					"factory": "[modules:/zrandomselectorchoice.class].pc_entitytype",
+					"blueprint": "[modules:/zrandomselectorchoice.class].pc_entityblueprint",
+					"properties": { "m_Weight": { "type": "float32", "value": 2 } },
+					"events": { "OnPicked": { "Start": ["342d3f1994b78c4e"] } }
+				}
+			]
+		},
+		{
+			"AddEntity": [
+				"feedd6bf701198b3",
+				{
+					"parent": "feed54457b32f26d",
+					"name": "Uh oh",
+					"factory": "[modules:/zrandomselectorchoice.class].pc_entitytype",
+					"blueprint": "[modules:/zrandomselectorchoice.class].pc_entityblueprint",
+					"properties": {
+						"m_rActor": { "type": "SEntityTemplateReference", "value": null },
+						"m_rSpeakingActor": { "type": "SEntityTemplateReference", "value": null }
+					},
+					"events": { "OnPicked": { "Start": ["feedb459ed3dfe6c"] } },
+					"propertyAliases": {
+						"m_rActor": [{ "originalProperty": "m_rActor", "originalEntity": "feedb459ed3dfe6c" }],
+						"m_rSpeakingActor": [
+							{ "originalProperty": "m_rSpeakingActor", "originalEntity": "feedb459ed3dfe6c" }
+						]
+					}
+				}
+			]
+		},
+		{
+			"AddEntity": [
+				"feedb459ed3dfe6c",
+				{
+					"parent": "feedd6bf701198b3",
+					"name": "Curse",
+					"factory": "[modules:/zspeakentity_sounddef.class].pc_entitytype",
+					"blueprint": "[modules:/zspeakentity_sounddef.class].pc_entityblueprint",
+					"properties": { "m_eSoundDef": { "type": "EActorSoundDefs", "value": "Gen_Curse" } }
+				}
+			]
+		}
+	],
+	"patchVersion": 6
+}
