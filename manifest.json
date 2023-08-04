@@ -1,10 +1,11 @@
 {
 	"$schema": "https://raw.githubusercontent.com/atampy25/simple-mod-framework/main/Mod%20Manager/src/lib/manifest-schema.json",
-	"version": "0.1.0",
+	"version": "1.0.0",
 	"id": "Atampy26.Chaos",
 	"name": "Chaos",
 	"description": "Like Hitman, but the writing team is on illegally-obtained prescription stimulants.",
 	"authors": ["Atampy26"],
 	"contentFolders": ["content"],
-	"frameworkVersion": "2.30.4"
+	"frameworkVersion": "2.30.4",
+	"updateCheck": "https://github.com/atampy25/h3-chaos/releases/latest/download/updates.json"
 }
