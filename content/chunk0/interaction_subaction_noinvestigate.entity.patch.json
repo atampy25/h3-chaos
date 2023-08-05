@@ -1,0 +1,76 @@
+{
+	"tempHash": "00C86E29B70279C0",
+	"tbluHash": "000EDE848016CBE4",
+	"patch": [
+		{
+			"AddEntity": [
+				"feed0cd79aa3edb7",
+				{
+					"parent": "6f9f45ab5bff1ea5",
+					"name": "Oops, all random!",
+					"factory": "[modules:/zentity.class].pc_entitytype",
+					"blueprint": "[modules:/zentity.class].pc_entityblueprint"
+				}
+			]
+		},
+		{
+			"AddEntity": [
+				"feedd2a76fc7c5b0",
+				{
+					"parent": "feed0cd79aa3edb7",
+					"name": "Check every so often",
+					"factory": "[modules:/zrandomtimerentity.class].pc_entitytype",
+					"blueprint": "[modules:/zrandomtimerentity.class].pc_entityblueprint",
+					"properties": {
+						"m_bEnabled": { "type": "bool", "value": true },
+						"m_fMinTime": { "type": "float32", "value": 10 },
+						"m_fMaxTime": { "type": "float32", "value": 15 }
+					},
+					"events": { "TimeOut": { "Pick": ["feed30e1b9775b3e"] } }
+				}
+			]
+		},
+		{
+			"AddEntity": [
+				"feed30e1b9775b3e",
+				{
+					"parent": "feed0cd79aa3edb7",
+					"name": "Check fire",
+					"factory": "[modules:/zrandomselector.class].pc_entitytype",
+					"blueprint": "[modules:/zrandomselector.class].pc_entityblueprint",
+					"properties": {
+						"m_Choices": {
+							"type": "TArray<SEntityTemplateReference>",
+							"value": ["feedc1f28fefcaab", "feed07171f66f785"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"AddEntity": [
+				"feed07171f66f785",
+				{
+					"parent": "feed30e1b9775b3e",
+					"name": "Fire",
+					"factory": "[modules:/zrandomselectorchoice.class].pc_entitytype",
+					"blueprint": "[modules:/zrandomselectorchoice.class].pc_entityblueprint",
+					"events": { "OnPicked": { "Execute": ["8d3f75d05c8a615b"] } }
+				}
+			]
+		},
+		{
+			"AddEntity": [
+				"feedc1f28fefcaab",
+				{
+					"parent": "feed30e1b9775b3e",
+					"name": "Don't fire",
+					"factory": "[modules:/zrandomselectorchoice.class].pc_entitytype",
+					"blueprint": "[modules:/zrandomselectorchoice.class].pc_entityblueprint",
+					"properties": { "m_Weight": { "type": "float32", "value": 5000 } }
+				}
+			]
+		}
+	],
+	"patchVersion": 6
+}

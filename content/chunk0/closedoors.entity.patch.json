@@ -1,0 +1,130 @@
+{
+	"tempHash": "00376B0AC9245C86",
+	"tbluHash": "00B1F78AD5118A59",
+	"patch": [
+		{
+			"AddEntity": [
+				"feedf3c46018c9e8",
+				{
+					"parent": "132a87de33afe000",
+					"name": "Trigger",
+					"factory": "[assembly:/templates/markup/volumetrigger.template?/volumetriggercharacter.entitytemplate].pc_entitytype",
+					"blueprint": "[assembly:/templates/markup/volumetrigger.template?/volumetriggercharacter.entitytemplate].pc_entityblueprint",
+					"properties": {
+						"m_Boxes": { "type": "TArray<SEntityTemplateReference>", "value": ["feedb10e84ee9ab7"] }
+					},
+					"events": { "OnTrue": { "Poll": ["feed9674ef91df63"] } }
+				}
+			]
+		},
+		{
+			"AddEntity": [
+				"feedb10e84ee9ab7",
+				{
+					"parent": "132a87de33afe000",
+					"name": "Volume",
+					"factory": "[modules:/zboxvolumeentity.class].pc_entitytype",
+					"blueprint": "[modules:/zboxvolumeentity.class].pc_entityblueprint",
+					"properties": {
+						"m_eidParent": { "type": "SEntityTemplateReference", "value": "96aaa4b84aac2399" },
+						"m_mTransform": {
+							"type": "SMatrix43",
+							"value": { "rotation": { "x": 0, "y": 0, "z": 0 }, "position": { "x": 0, "y": 0, "z": 0 } }
+						},
+						"m_eRoomBehaviour": { "type": "ZSpatialEntity.ERoomBehaviour", "value": "ROOM_DYNAMIC" },
+						"m_vGlobalSize": { "type": "SVector3", "value": { "x": 8, "y": 8, "z": 8 } }
+					}
+				}
+			]
+		},
+		{
+			"AddEntity": [
+				"feed9674ef91df63",
+				{
+					"parent": "132a87de33afe000",
+					"name": "ValueBool_Poll",
+					"factory": "[assembly:/_pro/design/logic/valuebool.template?/valuebool_poll.entitytemplate].pc_entitytype",
+					"blueprint": "[assembly:/_pro/design/logic/valuebool.template?/valuebool_poll.entitytemplate].pc_entityblueprint",
+					"properties": { "m_rValueEntity": { "type": "SEntityTemplateReference", "value": "6cab2928735b6717" } },
+					"events": { "PollTrue": { "Poll": ["feed107bbb8cd491"] } }
+				}
+			]
+		},
+		{
+			"AddEntity": [
+				"feedf4f3d56358ec",
+				{
+					"parent": "132a87de33afe000",
+					"name": "Receiver",
+					"factory": "[assembly:/_pro/design/gamecore/events/eventchannel.template?/eventchannelreceiver_void.entitytemplate].pc_entitytype",
+					"blueprint": "[assembly:/_pro/design/gamecore/events/eventchannel.template?/eventchannelreceiver_void.entitytemplate].pc_entityblueprint",
+					"properties": { "m_rChannelToken": { "type": "SEntityTemplateReference", "value": "feed294681408f4d" } },
+					"events": { "EventReceived": { "SetTrue": ["feed75f7ed16c952"] } }
+				}
+			]
+		},
+		{
+			"AddEntity": [
+				"feed294681408f4d",
+				{
+					"parent": "feedf4f3d56358ec",
+					"name": "Token_Enable",
+					"factory": "[modules:/ztokenidentity.class].pc_entitytype",
+					"blueprint": "[modules:/ztokenidentity.class].pc_entityblueprint",
+					"properties": { "m_sName": { "type": "ZString", "value": "Token_Chaos_EnableDoorClosing" } }
+				}
+			]
+		},
+		{
+			"AddEntity": [
+				"feed75f7ed16c952",
+				{
+					"parent": "132a87de33afe000",
+					"name": "Should close?",
+					"factory": "[assembly:/_pro/design/logic/valuebool.template?/valuebool_basic.entitytemplate].pc_entitytype",
+					"blueprint": "[assembly:/_pro/design/logic/valuebool.template?/valuebool_basic.entitytemplate].pc_entityblueprint",
+					"properties": { "m_bValue": { "type": "bool", "value": false } }
+				}
+			]
+		},
+		{
+			"AddEntity": [
+				"feedec8d384b03e8",
+				{
+					"parent": "132a87de33afe000",
+					"name": "Receiver",
+					"factory": "[assembly:/_pro/design/gamecore/events/eventchannel.template?/eventchannelreceiver_void.entitytemplate].pc_entitytype",
+					"blueprint": "[assembly:/_pro/design/gamecore/events/eventchannel.template?/eventchannelreceiver_void.entitytemplate].pc_entityblueprint",
+					"properties": { "m_rChannelToken": { "type": "SEntityTemplateReference", "value": "feed158368d792c2" } },
+					"events": { "EventReceived": { "SetFalse": ["feed75f7ed16c952"] } }
+				}
+			]
+		},
+		{
+			"AddEntity": [
+				"feed158368d792c2",
+				{
+					"parent": "feedec8d384b03e8",
+					"name": "Token_Disable",
+					"factory": "[modules:/ztokenidentity.class].pc_entitytype",
+					"blueprint": "[modules:/ztokenidentity.class].pc_entityblueprint",
+					"properties": { "m_sName": { "type": "ZString", "value": "Token_Chaos_DisableDoorClosing" } }
+				}
+			]
+		},
+		{
+			"AddEntity": [
+				"feed107bbb8cd491",
+				{
+					"parent": "feed9674ef91df63",
+					"name": "ValueBool_Poll",
+					"factory": "[assembly:/_pro/design/logic/valuebool.template?/valuebool_poll.entitytemplate].pc_entitytype",
+					"blueprint": "[assembly:/_pro/design/logic/valuebool.template?/valuebool_poll.entitytemplate].pc_entityblueprint",
+					"properties": { "m_rValueEntity": { "type": "SEntityTemplateReference", "value": "feed75f7ed16c952" } },
+					"events": { "PollTrue": { "Execute": ["132a87de33afe000"] } }
+				}
+			]
+		}
+	],
+	"patchVersion": 6
+}

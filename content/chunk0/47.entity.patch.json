@@ -339,7 +339,13 @@
 					"properties": {
 						"m_Choices": {
 							"type": "TArray<SEntityTemplateReference>",
-							"value": ["feed14f0ff4a0c12", "feed1a69c444fed4", "feed741f3cb97744", "feedb46146fb40cf"]
+							"value": [
+								"feed14f0ff4a0c12",
+								"feedb856ac210e6b",
+								"feed1a69c444fed4",
+								"feed741f3cb97744",
+								"feedb46146fb40cf"
+							]
 						}
 					}
 				}
@@ -759,6 +765,100 @@
 							"SetFalse": ["feed9ff482ea4990"]
 						}
 					}
+				}
+			]
+		},
+		{
+			"AddEntity": [
+				"feedb856ac210e6b",
+				{
+					"parent": "feed358efae0558f",
+					"name": "Doors",
+					"factory": "[modules:/zrandomselectorchoice.class].pc_entitytype",
+					"blueprint": "[modules:/zrandomselectorchoice.class].pc_entityblueprint",
+					"events": { "OnPicked": { "TransmitEvent": ["feed3d6d46eecc21"], "Trigger": ["feed31d39e60ad03"] } }
+				}
+			]
+		},
+		{
+			"AddEntity": [
+				"feed31d39e60ad03",
+				{
+					"parent": "feedb856ac210e6b",
+					"name": "Vital info bar",
+					"factory": "005A0661F5C0AC2C",
+					"blueprint": "0021EF5364B33659",
+					"properties": { "m_Message": { "type": "ZString", "value": "UI_CHAOS_DOORS" } }
+				}
+			]
+		},
+		{
+			"AddEntity": [
+				"feed281585569c17",
+				{
+					"parent": "feedb856ac210e6b",
+					"name": "Timer",
+					"factory": "[modules:/ztimerentity.class].pc_entitytype",
+					"blueprint": "[modules:/ztimerentity.class].pc_entityblueprint",
+					"properties": {
+						"m_bEnabled": { "type": "bool", "value": false },
+						"m_nInterval": { "type": "int32", "value": 120000 }
+					},
+					"events": {
+						"TimeOut": {
+							"Stop": ["feed281585569c17"],
+							"Reset": ["feed281585569c17"],
+							"TransmitEvent": ["feedc5fe508fb28e"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"AddEntity": [
+				"feed3d6d46eecc21",
+				{
+					"parent": "feedb856ac210e6b",
+					"name": "Transmit enable",
+					"factory": "[assembly:/_pro/design/gamecore/events/eventchannel.template?/eventchanneltransmitter_void.entitytemplate].pc_entitytype",
+					"blueprint": "[assembly:/_pro/design/gamecore/events/eventchannel.template?/eventchanneltransmitter_void.entitytemplate].pc_entityblueprint",
+					"properties": { "m_rChannelToken": { "type": "SEntityTemplateReference", "value": "feed7baf4c81da4e" } }
+				}
+			]
+		},
+		{
+			"AddEntity": [
+				"feedc5fe508fb28e",
+				{
+					"parent": "feedb856ac210e6b",
+					"name": "Transmit disable",
+					"factory": "[assembly:/_pro/design/gamecore/events/eventchannel.template?/eventchanneltransmitter_void.entitytemplate].pc_entitytype",
+					"blueprint": "[assembly:/_pro/design/gamecore/events/eventchannel.template?/eventchanneltransmitter_void.entitytemplate].pc_entityblueprint",
+					"properties": { "m_rChannelToken": { "type": "SEntityTemplateReference", "value": "feed79d28e1a1140" } }
+				}
+			]
+		},
+		{
+			"AddEntity": [
+				"feed79d28e1a1140",
+				{
+					"parent": "feedc5fe508fb28e",
+					"name": "Token_Disable",
+					"factory": "[modules:/ztokenidentity.class].pc_entitytype",
+					"blueprint": "[modules:/ztokenidentity.class].pc_entityblueprint",
+					"properties": { "m_sName": { "type": "ZString", "value": "Token_Chaos_DisableDoorClosing" } }
+				}
+			]
+		},
+		{
+			"AddEntity": [
+				"feed7baf4c81da4e",
+				{
+					"parent": "feed3d6d46eecc21",
+					"name": "Token_Enable",
+					"factory": "[modules:/ztokenidentity.class].pc_entitytype",
+					"blueprint": "[modules:/ztokenidentity.class].pc_entityblueprint",
+					"properties": { "m_sName": { "type": "ZString", "value": "Token_Chaos_EnableDoorClosing" } }
 				}
 			]
 		}
