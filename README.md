@@ -6,4 +6,4 @@ Like Hitman, but the writing team is on illegally-obtained prescription stimulan
 
 ---
 
-`Atampy26.Chaos` v1.0.0, by Atampy26. This README was automatically generated from the mod's manifest.
+`Atampy26.Chaos` v1.1.0, by Atampy26. This README was automatically generated from the mod's manifest.
